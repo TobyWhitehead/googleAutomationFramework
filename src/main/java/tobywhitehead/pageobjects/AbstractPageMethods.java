@@ -2,6 +2,7 @@ package tobywhitehead.pageobjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -23,5 +24,11 @@ public class AbstractPageMethods {
     public void clickElement(WebElement webElement) {
         waitForElementToBeVisible(webElement);
         webElement.click();
+    }
+
+    public void scrollToElement(WebElement webElement) {
+        Actions action = new Actions(driver);
+        action.scrollToElement(webElement);
+        action.perform();
     }
 }
