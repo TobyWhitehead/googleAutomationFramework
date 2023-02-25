@@ -5,14 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class AllSearchPage extends SearchPage {
-
-    public AllSearchPage(WebDriver driver) {
+public class ImageSearchPage extends AllSearchPage {
+    public ImageSearchPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//span[text()='All']")
-    WebElement allLink;
+    @FindBy(xpath = "//span[text()='Images']")
+    WebElement imagesLink;
 
 }

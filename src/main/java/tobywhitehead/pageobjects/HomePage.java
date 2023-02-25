@@ -31,10 +31,10 @@ public class HomePage extends AbstractPageMethods {
     @FindBy(css = "input[title='Search']")
     WebElement searchBox;
 
-    @FindBy(css = "input[value='Google Search']")
+    @FindBy(name = "btnK")
     WebElement googleSearchButton;
 
-    @FindBy(css = "input[value=\"I'm feeling lucky\"]")
+    @FindBy(name = "btnI")
     WebElement feelingLuckyButton;
 
     public void searchBoxEnterText(String text) {

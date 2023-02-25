@@ -2,6 +2,7 @@ package stepDefinitions;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,6 +15,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import tobywhitehead.pageobjects.AllSearchPage;
 import tobywhitehead.pageobjects.HomePage;
+import tobywhitehead.pageobjects.ImageSearchPage;
 
 public class SearchTextSteps {
 
@@ -55,7 +57,7 @@ public class SearchTextSteps {
         homePage.searchBoxEnterTextAndReturn(string);
     }
 
-    @Then("Search page is loaded with {string} in search box")
+    @Then("All Search page is loaded with {string} in search box")
     public void search_page_is_loaded_with_in_search_box(String string) {
         AllSearchPage allSearchPage = new AllSearchPage(driver);
         String searchBoxText = allSearchPage.getSearchBoxText();
@@ -63,9 +65,22 @@ public class SearchTextSteps {
     }
 
 
-    @When("I enter <text> and click on the Google Search button")
+    @When("I enter {string} and click on the Google Search button")
     public void iEnterTextAndClickOnTheGoogleSearchButton(String text) {
         HomePage homepage = new HomePage(driver);
         homepage.searchBoxEnterTextAndClickSearch(text);
+    }
+
+    @And("I click on the images button")
+    public void iClickOnTheImagesButton() {
+        AllSearchPage allSearchPage = new AllSearchPage(driver);
+        allSearchPage.clickImagesLink();
+    }
+
+    @Then("Image Search page is loaded with {string} in search box")
+    public void imageSearchPageIsLoadedWithInSearchBox(String arg0) {
+        ImageSearchPage imageSearchPage = new ImageSearchPage(driver);
+        String searchBoxText = imageSearchPage.getSearchBoxText();
+        Assert.assertEquals(searchBoxText, arg0, "Search box text: " + searchBoxText + "\nEnter search text: " + arg0);
     }
 }
