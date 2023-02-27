@@ -22,6 +22,7 @@ public class AbstractPageMethods {
     }
 
     public void clickElement(WebElement webElement) {
+        scrollToElement(webElement);
         waitForElementToBeVisible(webElement);
         webElement.click();
     }

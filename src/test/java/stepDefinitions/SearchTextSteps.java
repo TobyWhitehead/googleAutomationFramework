@@ -12,10 +12,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import tobywhitehead.pageobjects.AllSearchPage;
 import tobywhitehead.pageobjects.HomePage;
 import tobywhitehead.pageobjects.ImageSearchPage;
+
+import java.time.Duration;
 
 public class SearchTextSteps {
 
@@ -28,8 +31,9 @@ public class SearchTextSteps {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-
         driver.get(baseUrl);
+
+        WebDriverWait baseWait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         By acceptAllBy = By.xpath("//button//div[text()='Accept all']");
         WebElement acceptAllButton = driver.findElement(acceptAllBy);
