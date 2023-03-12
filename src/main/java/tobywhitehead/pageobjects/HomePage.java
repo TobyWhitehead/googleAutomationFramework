@@ -3,13 +3,11 @@ package tobywhitehead.pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 
 public class HomePage extends AbstractPageMethods {
 
@@ -95,5 +93,17 @@ public class HomePage extends AbstractPageMethods {
 
     public void submitElement(WebElement webElement) {
         webElement.submit();
+    }
+
+    public void goToApp(String appName) {
+        clickAppsButton();
+        driver.switchTo().frame(0);
+        String cssString = String.format("span[data-text='%s']", appName);
+        By AppBy = By.cssSelector(cssString);
+        WebElement AppElement = driver.findElement(AppBy);
+        Actions scrollAction = new Actions(driver);
+        scrollAction.scrollToElement(AppElement);
+        scrollAction.perform();
+        AppElement.click();
     }
 }

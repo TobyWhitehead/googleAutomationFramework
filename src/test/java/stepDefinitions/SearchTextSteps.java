@@ -17,6 +17,7 @@ import org.testng.Assert;
 import tobywhitehead.pageobjects.AllSearchPage;
 import tobywhitehead.pageobjects.HomePage;
 import tobywhitehead.pageobjects.ImageSearchPage;
+import tobywhitehead.pageobjects.TranslatePage;
 
 import java.time.Duration;
 
@@ -56,7 +57,7 @@ public class SearchTextSteps {
     }
 
     @When("I enter {string} and press return")
-    public void i_enter_and_press_return (String string) {
+    public void i_enter_and_press_return(String string) {
         HomePage homePage = new HomePage(driver);
         homePage.searchBoxEnterTextAndReturn(string);
     }
@@ -86,5 +87,24 @@ public class SearchTextSteps {
         ImageSearchPage imageSearchPage = new ImageSearchPage(driver);
         String searchBoxText = imageSearchPage.getSearchBoxText();
         Assert.assertEquals(searchBoxText, arg0, "Search box text: " + searchBoxText + "\nEnter search text: " + arg0);
+    }
+
+    @When("I navigate to the google translate page")
+    public void iNavigateToTheGoogleTranslatePage() {
+        HomePage homePage = new HomePage(driver);
+        homePage.goToApp("Translate");
+    }
+
+    @And("I enter {string} into google translate")
+    public void iEnterTextIntoGoogleTranslate(String arg0) {
+        TranslatePage translatePage = new TranslatePage(driver);
+        translatePage.translateText(arg0);
+    }
+
+    @Then("Translated reply should read {string}")
+    public void translatedReplyShouldReadOutputText(String arg0) {
+        TranslatePage translatePage = new TranslatePage(driver);
+        String translateOutput = translatePage.getTranslatedText();
+        Assert.assertEquals(translateOutput, arg0, "Translate output text: " + translateOutput + "\nExpected translate output text: " + arg0);
     }
 }
